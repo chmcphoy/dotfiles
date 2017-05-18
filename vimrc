@@ -98,8 +98,8 @@ autocmd FileType go setlocal shiftwidth=4 tabstop=4 softtabstop=4
 nmap <leader>w :w<CR>
 nmap <leader>q :q<CR>       
 
-" Extremely useful
-nmap <leader>o :only<CR>       
+" extremely useful
+nmap <leader>o :only<CR>
 
 " source current file
 nmap <leader>s :so %<CR>
