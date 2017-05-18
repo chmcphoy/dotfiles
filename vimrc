@@ -53,7 +53,7 @@ set background=dark
 
 " let g:molokai_original = 1 " original Monokai
 " let g:zenburn_high_Contrast = 1 " darker background, Zenburn
-let g:seoul256_background = 236 " range: 233 (darkest) ~ 239 (lightest)
+let g:seoul256_background = 238 " range: 233 (darkest) ~ 239 (lightest)
 
 " current colorscheme
 colors seoul256
@@ -110,7 +110,7 @@ nmap <leader>h :sp<CR><C-w><C-w>
 
 " fast escapes from insert, visual and command-line mode
 inoremap jk <esc>
-xnoremap jk <esc>
+xnoremap h <esc>
 cnoremap jk <esc>
 
 " fast & intuitive finds
