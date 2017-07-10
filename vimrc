@@ -33,12 +33,12 @@ Plugin 'kchmck/vim-coffee-script'                        " syntax for CoffeeScri
 Plugin 'fatih/vim-go'                                    " Go development plugin
 Plugin 'raimondi/delimitmate'			         " insert mode auto-completion for quotes, parens, brackets, etc.
 Plugin 'tpope/vim-fugitive'                              " a Git wrapper so awesome, it should be illegal
-Plugin 'jnurmine/Zenburn'				 " Colorscheme: Zenburn
-Plugin 'tomasr/molokai'					 " Colorscheme: Molokai
-Plugin 'junegunn/seoul256.vim'				 " Colorscheme: Seoul256
+Plugin 'andrewradev/splitjoin.vim'			 " Simplify switching between single and multi-line statements
 Plugin 'junegunn/goyo.vim'				 " Distraction-free writing in Vim
 Plugin 'junegunn/limelight.vim'				 " Hyperfocus-writing in Vim
-Plugin 'andrewradev/splitjoin.vim'			 " Simplify switching between single and multi-line statements
+Plugin 'junegunn/seoul256.vim'				 " Colorscheme: Seoul256
+Plugin 'lifepillar/vim-solarized8'			 " Colorscheme: Solarized8
+Plugin 'tyrannicaltoucan/vim-quantum'			 " Colorscheme: Quantum
 
 call vundle#end() " make sure your plugins are before this line
 
@@ -48,16 +48,17 @@ filetype plugin indent on
 " => Vim UI
 """"""""""""""""""""""""""""""
 syntax on 
-set t_Co=256
+"set t_Co=256
+set termguicolors
 set background=dark
 
-" let g:molokai_original = 1 " original Monokai
-" let g:zenburn_high_Contrast = 1 " darker background, Zenburn
-let g:seoul256_background = 238 " range: 233 (darkest) ~ 239 (lightest)
+" colorscheme configurations
+let g:seoul256_background = 233 " range: 233 (darkest) ~ 239 (lightest)
+let g:airline_theme='quantum'
 
 " current colorscheme
-colors seoul256
-colorscheme seoul256
+colors quantum
+colorscheme quantum
 
 """"""""""""""""""""""""""""""
 " => Main Configuration (a-z)
@@ -132,8 +133,8 @@ xnoremap > >gv
 nnoremap <leader>c :nohl<CR>
 
 " tabular navigation
-nmap <leader>n :tabnext<cr>
-nmap <leader>t :tabnew<cr>
+nnoremap <leader>n :tabnext<cr>
+nnoremap <leader>t :tabnew<cr>
 
 
 """"""""""""""""""""""""""""""
