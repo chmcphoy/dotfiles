@@ -39,6 +39,7 @@ Plugin 'junegunn/limelight.vim'				 " Hyperfocus-writing in Vim
 Plugin 'junegunn/seoul256.vim'				 " Colorscheme: Seoul256
 Plugin 'lifepillar/vim-solarized8'			 " Colorscheme: Solarized8
 Plugin 'tyrannicaltoucan/vim-quantum'			 " Colorscheme: Quantum
+Plugin 'davidklsn/vim-sialoquent'			 " Colorscheme: Sialoquent
 
 call vundle#end() " make sure your plugins are before this line
 
@@ -53,12 +54,13 @@ set termguicolors
 set background=dark
 
 " colorscheme configurations
-let g:seoul256_background = 233 " range: 233 (darkest) ~ 239 (lightest)
+let g:seoul256_background = 238 " range: 233 (darkest) ~ 239 (lightest)
 let g:airline_theme='quantum'
+"let g:quantum_black=1
 
 " current colorscheme
-colors quantum
-colorscheme quantum
+colors sialoquent
+colorscheme sialoquent
 
 """"""""""""""""""""""""""""""
 " => Main Configuration (a-z)
