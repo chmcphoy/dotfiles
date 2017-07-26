@@ -101,7 +101,7 @@ autocmd FileType go setlocal shiftwidth=4 tabstop=4 softtabstop=4
 nmap <leader>w :w<CR>
 nmap <leader>q :q<CR>       
 
-" extremely useful
+" extremely useful with multi-split windows
 nmap <leader>o :only<CR>
 
 " source current file
@@ -147,7 +147,7 @@ nmap <leader>a <CR>:Ack ""<left>
 nmap <leader>A :tab split<CR>:Ack "\W<C-r><C-w>\W"<CR>
 
 " => CtrlP
-let g:ctrlp_custom_ignore = '\v[\/](node_modules|coverage|target|dist|build)|(\.(swp|ico|git|svn|png|jpg|gif|ttf))$'	" CtrlP won't show results from node_modules
+let g:ctrlp_custom_ignore = '\v[\/](node_modules|coverage|target|dist|build)|(\.(swp|ico|git|svn|png|jpg|gif|ttf))$'
 let g:ctrlp_working_path_mode = 0
 let g:ctrlp_regexp_search = 1
 let g:ctrlp_by_filename = 0
