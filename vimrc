@@ -17,29 +17,30 @@ call vundle#begin()
 
 Plugin 'VundleVim/Vundle.vim'                            " let Vundle manage Vundle, required
 
-Plugin 'othree/html5.vim'                                " optimized HTML syntax
-Plugin 'hail2u/vim-css3-syntax'                          " optimized CSS syntax
-Plugin 'cakebaker/scss-syntax.vim'                       " SASS syntax
-Plugin 'pangloss/vim-javascript'                         " optimized JavaScript syntax
-Plugin 'othree/javascript-libraries-syntax.vim'          " syntax for JS libs & frameworks
-Plugin 'elzr/vim-json'                                   " syntax for json
-Plugin 'scrooloose/nerdtree'                             " navigate files within a tree-like structure
-Plugin 'ctrlpvim/ctrlp.vim'                              " fuzzy file finder
-Plugin 'mileszs/ack.vim'                                 " search in code and filenames
-Plugin 'vim-airline/vim-airline'                         " awesome and light tabline for vim
-Plugin 'tpope/vim-surround'                              " quoting/parenthesizing made easy
-Plugin 'mattn/emmet-vim'                                 " improve HTML & CSS workflow
-Plugin 'kchmck/vim-coffee-script'                        " syntax for CoffeeScript
-Plugin 'fatih/vim-go'                                    " Go development plugin
-Plugin 'raimondi/delimitmate'			         " insert mode auto-completion for quotes, parens, brackets, etc.
-Plugin 'tpope/vim-fugitive'                              " a Git wrapper so awesome, it should be illegal
-Plugin 'andrewradev/splitjoin.vim'			 " Simplify switching between single and multi-line statements
-Plugin 'junegunn/goyo.vim'				 " Distraction-free writing in Vim
-Plugin 'junegunn/limelight.vim'				 " Hyperfocus-writing in Vim
 Plugin 'junegunn/seoul256.vim'				 " Colorscheme: Seoul256
 Plugin 'lifepillar/vim-solarized8'			 " Colorscheme: Solarized8
 Plugin 'tyrannicaltoucan/vim-quantum'			 " Colorscheme: Quantum
 Plugin 'davidklsn/vim-sialoquent'			 " Colorscheme: Sialoquent
+Plugin 'othree/html5.vim'                                " Syntax: HTML
+Plugin 'hail2u/vim-css3-syntax'                          " Syntax: CSS
+Plugin 'cakebaker/scss-syntax.vim'                       " Syntax: SASS
+Plugin 'pangloss/vim-javascript'                         " Syntax: JS
+Plugin 'othree/javascript-libraries-syntax.vim'          " Syntax: JS libs
+Plugin 'elzr/vim-json'                                   " Syntax: JSON
+Plugin 'kchmck/vim-coffee-script'                        " Syntax: CoffeeScript
+Plugin 'darfink/vim-plist'				 " Syntax: Plist files
+Plugin 'vim-airline/vim-airline'                         " UI: Awesome and light tabline for vim
+Plugin 'junegunn/goyo.vim'				 " UI: Distraction-free writing in Vim
+Plugin 'junegunn/limelight.vim'				 " UI: Hyperfocus-writing in Vim
+Plugin 'scrooloose/nerdtree'                             " Search: navigate files within a tree-like structure
+Plugin 'ctrlpvim/ctrlp.vim'                              " Search: fuzzy file finder
+Plugin 'mileszs/ack.vim'                                 " Search: search in code and filenames
+Plugin 'fatih/vim-go'                                    " Go development plugin
+Plugin 'tpope/vim-fugitive'                              " a Git wrapper so awesome, it should be illegal
+Plugin 'tpope/vim-surround'                              " quoting/parenthesizing made easy
+Plugin 'mattn/emmet-vim'                                 " improve HTML & CSS workflow
+Plugin 'raimondi/delimitmate'			         " insert mode auto-completion for quotes, parens, brackets, etc.
+Plugin 'andrewradev/splitjoin.vim'			 " Simplify switching between single and multi-line statements
 
 call vundle#end() " make sure your plugins are before this line
 
@@ -93,6 +94,14 @@ set noet
 autocmd FileType html,css setlocal shiftwidth=2 tabstop=2 softtabstop=2
 autocmd FileType javascript,coffee setlocal shiftwidth=4 tabstop=4 softtabstop=4
 autocmd FileType go setlocal shiftwidth=4 tabstop=4 softtabstop=4
+
+function! Formatonsave()
+  let l:formatdiff = 1
+  pyf /usr/local/opt/llvm/share/clang/clang-format.py
+endfunction
+
+autocmd BufWritePre *.h,*.cc,*.cpp,*.mm call Formatonsave()
+
 
 """"""""""""""""""""""""""""""
 " => Mappings
