@@ -55,13 +55,13 @@ set termguicolors
 set background=dark
 
 " colorscheme configurations
-let g:seoul256_background = 256 " range: 233 (darkest) ~ 239 (lightest)
+let g:seoul256_background = 239 " range: 233 (darkest) ~ 239 (lightest)
 let g:airline_theme='quantum'
-let g:quantum_black=1
+"let g:quantum_black=1
 
 " current colorscheme
-colors sialoquent
-colorscheme sialoquent
+colors quantum
+colorscheme quantum
 
 """"""""""""""""""""""""""""""
 " => Main Configuration (a-z)
@@ -156,7 +156,7 @@ nmap <leader>a <CR>:Ack ""<left>
 nmap <leader>A :tab split<CR>:Ack "\W<C-r><C-w>\W"<CR>
 
 " => CtrlP
-let g:ctrlp_custom_ignore = '\v[\/](node_modules|coverage|target|dist|build|bin)|(\.(swp|ico|git|svn|png|jpg|gif|ttf))$'
+let g:ctrlp_custom_ignore = '\v[\/](node_modules|coverage|target|dist|build|bin|vendor)|(\.(swp|ico|git|svn|png|jpg|gif|ttf))$'
 let g:ctrlp_working_path_mode = 0
 let g:ctrlp_regexp_search = 1
 let g:ctrlp_by_filename = 0
