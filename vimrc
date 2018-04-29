@@ -17,30 +17,47 @@ call vundle#begin()
 
 Plugin 'VundleVim/Vundle.vim'                            " let Vundle manage Vundle, required
 
+" COLORS
+Plugin 'tyrannicaltoucan/vim-deep-space'		 " Colorscheme: Deep Space
+Plugin 'yuttie/hydrangea-vim'				 " Colorscheme: Hydrangea
 Plugin 'junegunn/seoul256.vim'				 " Colorscheme: Seoul256
+Plugin 'davidklsn/vim-sialoquent'			 " Colorscheme: Sialoquent
 Plugin 'lifepillar/vim-solarized8'			 " Colorscheme: Solarized8
 Plugin 'tyrannicaltoucan/vim-quantum'			 " Colorscheme: Quantum
-Plugin 'davidklsn/vim-sialoquent'			 " Colorscheme: Sialoquent
-Plugin 'othree/html5.vim'                                " Syntax: HTML
-Plugin 'hail2u/vim-css3-syntax'                          " Syntax: CSS
-Plugin 'cakebaker/scss-syntax.vim'                       " Syntax: SASS
-Plugin 'pangloss/vim-javascript'                         " Syntax: JS
-Plugin 'othree/javascript-libraries-syntax.vim'          " Syntax: JS libs
-Plugin 'elzr/vim-json'                                   " Syntax: JSON
-Plugin 'kchmck/vim-coffee-script'                        " Syntax: CoffeeScript
-Plugin 'darfink/vim-plist'				 " Syntax: Plist files
-Plugin 'vim-airline/vim-airline'                         " UI: Awesome and light tabline for vim
-Plugin 'junegunn/goyo.vim'				 " UI: Distraction-free writing in Vim
-Plugin 'junegunn/limelight.vim'				 " UI: Hyperfocus-writing in Vim
-Plugin 'scrooloose/nerdtree'                             " Search: navigate files within a tree-like structure
-Plugin 'ctrlpvim/ctrlp.vim'                              " Search: fuzzy file finder
-Plugin 'mileszs/ack.vim'                                 " Search: search in code and filenames
-Plugin 'fatih/vim-go'                                    " Go development plugin
+Plugin 'arcticicestudio/nord-vim'
+
+" SYNTAX
+Plugin 'othree/html5.vim'                                " HTML syntax
+Plugin 'hail2u/vim-css3-syntax'                          " CSS syntax
+Plugin 'cakebaker/scss-syntax.vim'                       " SASS syntax
+Plugin 'kchmck/vim-coffee-script'                        " CoffeeScript syntax
+Plugin 'pangloss/vim-javascript'                         " JS syntax
+Plugin 'othree/javascript-libraries-syntax.vim'          " JS libs & frameworks
+Plugin 'elzr/vim-json'                                   " JSON syntax
+Plugin 'digitaltoad/vim-pug'				 " Pug syntax
+
+" FILE NAVIGATION & EDITING
+Plugin 'mileszs/ack.vim'                                 " Search in code and filenames
+Plugin 'ctrlpvim/ctrlp.vim'                              " Fuzzy file finder
+Plugin 'scrooloose/nerdtree'                             " Tree-like file navigation
+
+Plugin 'mattn/emmet-vim'                                 " Faster HTML & CSS workflow
+Plugin 'tpope/vim-surround'                              " Faster Quoting/parenthesizing
+Plugin 'raimondi/delimitmate'			         " Insert mode auto-completion for quotes, parens, brackets, etc.
 Plugin 'tpope/vim-fugitive'                              " a Git wrapper so awesome, it should be illegal
-Plugin 'tpope/vim-surround'                              " quoting/parenthesizing made easy
-Plugin 'mattn/emmet-vim'                                 " improve HTML & CSS workflow
-Plugin 'raimondi/delimitmate'			         " insert mode auto-completion for quotes, parens, brackets, etc.
 Plugin 'andrewradev/splitjoin.vim'			 " Simplify switching between single and multi-line statements
+Plugin 'w0rp/ale'					 " Asynchronus linting for Vim!
+
+Plugin 'junegunn/goyo.vim'				 " Distraction-free writing in Vim
+Plugin 'junegunn/limelight.vim'				 " Hyperfocus-writing in Vim
+Plugin 'junegunn/vim-journal'                            " markdown-like syntax for plain-text notes
+
+
+" OTHER
+Plugin 'itchyny/lightline.vim'                           " minimal statusbar
+"Plugin 'fatih/vim-go'                                    " Go development plugin
+"Plugin 'ashisha/image.vim'
+"Plugin 'tpope/vim-afterimage'
 
 call vundle#end() " make sure your plugins are before this line
 
@@ -51,17 +68,18 @@ filetype plugin indent on
 """"""""""""""""""""""""""""""
 syntax on 
 "set t_Co=256
-set termguicolors
 set background=dark
+set termguicolors
 
 " colorscheme configurations
 let g:seoul256_background = 239 " range: 233 (darkest) ~ 239 (lightest)
-let g:airline_theme='quantum'
 "let g:quantum_black=1
+let g:lightline = {
+      \ 'colorscheme': 'nord',
+      \ }
 
 " current colorscheme
-colors quantum
-colorscheme quantum
+colorscheme nord
 
 """"""""""""""""""""""""""""""
 " => Main Configuration (a-z)
@@ -83,6 +101,7 @@ set showcmd
 set smartcase
 set smartindent
 set softtabstop=2
+set noswapfile
 set textwidth=80
 set title
 set nowrap
@@ -92,16 +111,8 @@ set noet
 " => File Configs
 """"""""""""""""""""""""""""""
 autocmd FileType html,css setlocal shiftwidth=2 tabstop=2 softtabstop=2
-autocmd FileType javascript,coffee setlocal shiftwidth=4 tabstop=4 softtabstop=4
+autocmd FileType javascript,coffee setlocal shiftwidth=2 tabstop=2 softtabstop=2
 autocmd FileType go setlocal shiftwidth=4 tabstop=4 softtabstop=4
-
-function! Formatonsave()
-  let l:formatdiff = 1
-  pyf /usr/local/opt/llvm/share/clang/clang-format.py
-endfunction
-
-autocmd BufWritePre *.h,*.cc,*.cpp,*.mm call Formatonsave()
-
 
 """"""""""""""""""""""""""""""
 " => Mappings
@@ -147,13 +158,25 @@ nnoremap <leader>c :nohl<CR>
 nnoremap <leader>n :tabnext<cr>
 nnoremap <leader>t :tabnew<cr>
 
-
 """"""""""""""""""""""""""""""
 " => Plugin Configs (a-z)
 """"""""""""""""""""""""""""""
 " => Ack
 nmap <leader>a <CR>:Ack ""<left>
 nmap <leader>A :tab split<CR>:Ack "\W<C-r><C-w>\W"<CR>
+
+" => ALE
+let g:ale_fixers = {}
+let g:ale_fixers['css'] = ['prettier']
+let g:ale_fixers['scss'] = ['prettier']
+let g:ale_fixers['javascript'] = ['prettier']
+let g:ale_fixers['json'] = ['prettier']
+let g:ale_fixers['markdown'] = ['prettier']
+let g:ale_fix_on_save = 1
+let g:ale_javascript_prettier_options = '--single-quote --trailing-comma es5'
+let g:ale_pattern_options = {
+      \   '.*\.html$': {'ale_enabled': 0},
+      \}
 
 " => CtrlP
 let g:ctrlp_custom_ignore = '\v[\/](node_modules|coverage|target|dist|build|bin|vendor)|(\.(swp|ico|git|svn|png|jpg|gif|ttf))$'
@@ -177,11 +200,4 @@ nmap <Leader>l <Plug>(Limelight)
 xmap <Leader>l <Plug>(Limelight)
 
 " => NERDTree
-nmap <silent> <C-N> :NERDTreeToggle<CR>          
-
-" => Go mappings
-" au FileType go nmap <leader>r <Plug>(go-run)
-" au FileType go nmap <leader>b <Plug>(go-build)
-" au FileType go nmap <leader>t <Plug>(go-test)
-" au FileType go nmap <leader>c <Plug>(go-coverage)
-" au FileType go nmap <leader>gb <Plug>(go-doc-browser) 
+nmap <silent> <C-N> :NERDTreeToggle<CR>
