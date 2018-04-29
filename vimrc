@@ -37,26 +37,28 @@ Plugin 'elzr/vim-json'                                   " JSON syntax
 Plugin 'digitaltoad/vim-pug'				 " Pug syntax
 Plugin 'posva/vim-vue'					 " Vue syntax
 
-" FILE NAVIGATION & EDITING
+" FILE NAVIGATION
 Plugin 'mileszs/ack.vim'                                 " Search in code and filenames
 Plugin 'ctrlpvim/ctrlp.vim'                              " Fuzzy file finder
 Plugin 'scrooloose/nerdtree'                             " Tree-like file navigation
 
+" EDITING
 Plugin 'mattn/emmet-vim'                                 " Faster HTML & CSS workflow
-Plugin 'tpope/vim-surround'                              " Faster Quoting/parenthesizing
 Plugin 'raimondi/delimitmate'			         " Insert mode auto-completion for quotes, parens, brackets, etc.
-Plugin 'tpope/vim-fugitive'                              " a Git wrapper so awesome, it should be illegal
+Plugin 'tpope/vim-surround'                              " Faster Quoting/parenthesizing
 Plugin 'andrewradev/splitjoin.vim'			 " Simplify switching between single and multi-line statements
-Plugin 'w0rp/ale'					 " Asynchronus linting for Vim!
 
 Plugin 'junegunn/goyo.vim'				 " Distraction-free writing in Vim
 Plugin 'junegunn/limelight.vim'				 " Hyperfocus-writing in Vim
 Plugin 'junegunn/vim-journal'                            " markdown-like syntax for plain-text notes
 
 
-" OTHER
+" MISC UTILITIES
+Plugin 'shime/vim-livedown'                              " Live Markdown previews - without leaving Vim.
+Plugin 'w0rp/ale'					 " Asynchronus linting for Vim!
+Plugin 'tpope/vim-fugitive'                              " a Git wrapper so awesome, it should be illegal
 Plugin 'itchyny/lightline.vim'                           " minimal statusbar
-"Plugin 'fatih/vim-go'                                    " Go development plugin
+"Plugin 'fatih/vim-go'                                   " Go development plugin
 "Plugin 'ashisha/image.vim'
 "Plugin 'tpope/vim-afterimage'
 
@@ -200,6 +202,9 @@ nnoremap <Leader>gb :Git branch<CR>
 " => Limelight
 nmap <Leader>l <Plug>(Limelight)
 xmap <Leader>l <Plug>(Limelight)
+
+" => Vim-Livedown
+nmap gm :LivedownToggle<CR>
 
 " => NERDTree
 nmap <silent> <C-N> :NERDTreeToggle<CR>
