@@ -44,6 +44,7 @@ Plugin 'scrooloose/nerdtree'                             " Tree-like file naviga
 
 " EDITING
 Plugin 'mattn/emmet-vim'                                 " Faster HTML & CSS workflow
+Plugin 'mattn/webapi-vim'				 " Vim interface to Web API's
 Plugin 'raimondi/delimitmate'			         " Insert mode auto-completion for quotes, parens, brackets, etc.
 Plugin 'tpope/vim-surround'                              " Faster Quoting/parenthesizing
 Plugin 'andrewradev/splitjoin.vim'			 " Simplify switching between single and multi-line statements
@@ -189,8 +190,10 @@ let g:ctrlp_regexp_search = 1
 let g:ctrlp_by_filename = 0
 
 " => Emmet
-let g:user_emmet_install_global = 0
-autocmd FileType html,css EmmetInstall
+let g:user_emmet_install_global = 1
+autocmd FileType html,css,vue EmmetInstall
+let g:user_emmet_settings = webapi#json#decode(join(readfile(expand('~/.emmet-custom-snippets.json')), "\n"))
+
 
 " => Fugitive
 nnoremap <Leader>gs :Gstatus<CR>
