@@ -1,4 +1,4 @@
-""""""""""""""""""""""""""""""
+  """"""""""""""""""""""""""""""
 " => .vimrc of Chuma McPhoy
 """"""""""""""""""""""""""""""
 
@@ -24,7 +24,7 @@ Plugin 'junegunn/seoul256.vim'				 " Colorscheme: Seoul256
 Plugin 'davidklsn/vim-sialoquent'			 " Colorscheme: Sialoquent
 Plugin 'lifepillar/vim-solarized8'			 " Colorscheme: Solarized8
 Plugin 'tyrannicaltoucan/vim-quantum'			 " Colorscheme: Quantum
-Plugin 'arcticicestudio/nord-vim'
+Plugin 'arcticicestudio/nord-vim'                        " Colorscheme: Nord
 
 " SYNTAX
 Plugin 'othree/html5.vim'                                " HTML syntax
@@ -72,18 +72,19 @@ filetype plugin indent on
 """"""""""""""""""""""""""""""
 syntax on 
 "set t_Co=256
-set background=dark
+set background=light
 set termguicolors
 
 " colorscheme configurations
 let g:seoul256_background = 239 " range: 233 (darkest) ~ 239 (lightest)
+let g:nord_comment_brightness = 20 " varies between 1-20 percent
 "let g:quantum_black=1
 let g:lightline = {
-      \ 'colorscheme': 'nord',
+      \ 'colorscheme': 'solarized',
       \ }
 
 " current colorscheme
-colorscheme nord
+colorscheme solarized8_flat
 
 """"""""""""""""""""""""""""""
 " => Main Configuration (a-z)
@@ -191,7 +192,9 @@ let g:ctrlp_by_filename = 0
 
 " => Emmet
 let g:user_emmet_install_global = 1
-autocmd FileType html,css,vue EmmetInstall
+autocmd FileType html,css,vue,javascript EmmetInstall
+" trigger emmet with fewer keystrokes
+imap <C-e> <C-y>, 
 let g:user_emmet_settings = webapi#json#decode(join(readfile(expand('~/.emmet-custom-snippets.json')), "\n"))
 
 
