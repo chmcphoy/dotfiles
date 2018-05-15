@@ -231,3 +231,6 @@ nmap gm :LivedownToggle<CR>
 
 " => NERDTree
 nmap <silent> <C-N> :NERDTreeToggle<CR>
+
+" => Vim-Vue
+let g:vue_disable_pre_processors=1 "prevent vim from slowing down vue files.
