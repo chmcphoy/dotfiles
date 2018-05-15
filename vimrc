@@ -170,19 +170,36 @@ nnoremap <leader>t :tabnew<cr>
 nmap <leader>a <CR>:Ack ""<left>
 nmap <leader>A :tab split<CR>:Ack "\W<C-r><C-w>\W"<CR>
 
-" => ALE
+" => Asynchronous Lint Engine (ALE)
+let g:ale_linters = {
+      \  'javascript': ['eslint'],
+      \  'scss': ['stylelint']
+      \}
+
 let g:ale_fixers = {}
-let g:ale_fixers['css'] = ['prettier']
-let g:ale_fixers['scss'] = ['prettier']
+let g:ale_fixers['javascript'] = ['prettier', 'eslint']
+let g:ale_javascript_prettier_options = '--single-quote'
+
+
+let g:ale_fixers['vue'] = ['prettier']
 let g:ale_fixers['json'] = ['prettier']
 let g:ale_fixers['markdown'] = ['prettier']
-let g:ale_fixers['javascript'] = ['prettier']
-let g:ale_fixers['vue'] = ['prettier']
-let g:ale_fix_on_save = 1
-let g:ale_javascript_prettier_options = '--single-quote --trailing-comma es5'
+let g:ale_fixers['css'] = ['prettier']
+let g:ale_fixers['scss'] = ['prettier']
 let g:ale_pattern_options = {
       \   '.*\.html$': {'ale_enabled': 0},
       \}
+
+let g:ale_echo_msg_format = '%linter% says %s'
+let g:ale_fix_on_save = 1
+
+highlight clear ALEErrorSign " otherwise uses error bg color (typically red)
+highlight clear ALEWarningSign " otherwise uses error bg color (typically red)j
+let g:ale_sign_error = '👎'
+let g:ale_sign_warning = '❓'
+let g:ale_statusline_format = ['👎 %d', '❓ %d', '']
+" %linter% is the name of the linter that provided the message
+" %s is the error or warning message
 
 " => CtrlP
 let g:ctrlp_custom_ignore = '\v[\/](node_modules|coverage|target|dist|build|bin|vendor)|(\.(swp|ico|git|svn|png|jpg|gif|ttf))$'
