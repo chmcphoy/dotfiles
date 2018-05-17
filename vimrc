@@ -174,7 +174,8 @@ nmap <leader>A :tab split<CR>:Ack "\W<C-r><C-w>\W"<CR>
 let g:ale_linters = {
       \  'javascript': ['eslint'],
       \  'vue': ['eslint'],
-      \  'scss': ['stylelint']
+      \  'scss': ['stylelint'],
+      \  'markdown': ['markdownlint']
       \}
 
 let g:ale_fixers = {}
