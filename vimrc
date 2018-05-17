@@ -173,15 +173,16 @@ nmap <leader>A :tab split<CR>:Ack "\W<C-r><C-w>\W"<CR>
 " => Asynchronous Lint Engine (ALE)
 let g:ale_linters = {
       \  'javascript': ['eslint'],
+      \  'vue': ['eslint'],
       \  'scss': ['stylelint']
       \}
 
 let g:ale_fixers = {}
+
 let g:ale_fixers['javascript'] = ['prettier', 'eslint']
 let g:ale_javascript_prettier_options = '--single-quote'
 
-
-let g:ale_fixers['vue'] = ['prettier']
+let g:ale_fixers['vue'] = ['prettier', 'eslint']
 let g:ale_fixers['json'] = ['prettier']
 let g:ale_fixers['markdown'] = ['prettier']
 let g:ale_fixers['css'] = ['prettier']
