@@ -60,8 +60,6 @@ Plugin 'w0rp/ale'					 " Asynchronus linting for Vim!
 Plugin 'tpope/vim-fugitive'                              " a Git wrapper so awesome, it should be illegal
 Plugin 'itchyny/lightline.vim'                           " minimal statusbar
 "Plugin 'fatih/vim-go'                                   " Go development plugin
-"Plugin 'ashisha/image.vim'
-"Plugin 'tpope/vim-afterimage'
 
 call vundle#end() " make sure your plugins are before this line
 
@@ -117,7 +115,6 @@ set noet
 """"""""""""""""""""""""""""""
 autocmd FileType html,css setlocal shiftwidth=2 tabstop=2 softtabstop=2
 autocmd FileType javascript,coffee setlocal shiftwidth=2 tabstop=2 softtabstop=2
-autocmd FileType go setlocal shiftwidth=4 tabstop=4 softtabstop=4
 
 """"""""""""""""""""""""""""""
 " => Mappings
