@@ -1,4 +1,4 @@
-  """"""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""
 " => .vimrc of Chuma McPhoy
 """"""""""""""""""""""""""""""
 
@@ -20,13 +20,17 @@ Plugin 'VundleVim/Vundle.vim'                            " let Vundle manage Vun
 " COLORS
 Plugin 'tyrannicaltoucan/vim-deep-space'		 " Colorscheme: Deep Space
 Plugin 'yuttie/hydrangea-vim'				 " Colorscheme: Hydrangea
+Plugin 'arcticicestudio/nord-vim'                        " Colorscheme: Nord
+Plugin 'tyrannicaltoucan/vim-quantum'			 " Colorscheme: Quantum
 Plugin 'junegunn/seoul256.vim'				 " Colorscheme: Seoul256
 Plugin 'davidklsn/vim-sialoquent'			 " Colorscheme: Sialoquent
 Plugin 'lifepillar/vim-solarized8'			 " Colorscheme: Solarized8
-Plugin 'tyrannicaltoucan/vim-quantum'			 " Colorscheme: Quantum
-Plugin 'arcticicestudio/nord-vim'                        " Colorscheme: Nord
+Plugin 'trevordmiller/nova-vim'                          " Colorscheme: Nova
+Plugin 'sonph/onehalf', {'rtp': 'vim/'}                  " Colorscheme: OneHalf
+
 
 " SYNTAX
+Plugin 'sheerun/vim-polyglot'                            " Language pack - needed for nova
 Plugin 'othree/html5.vim'                                " HTML syntax
 Plugin 'hail2u/vim-css3-syntax'                          " CSS syntax
 Plugin 'cakebaker/scss-syntax.vim'                       " SASS syntax
@@ -41,6 +45,7 @@ Plugin 'posva/vim-vue'					 " Vue syntax
 Plugin 'mileszs/ack.vim'                                 " Search in code and filenames
 Plugin 'ctrlpvim/ctrlp.vim'                              " Fuzzy file finder
 Plugin 'scrooloose/nerdtree'                             " Tree-like file navigation
+Plugin 'chrisbra/csv.vim'
 
 " EDITING
 Plugin 'mattn/emmet-vim'                                 " Faster HTML & CSS workflow
@@ -48,6 +53,7 @@ Plugin 'mattn/webapi-vim'				 " Vim interface to Web API's
 Plugin 'raimondi/delimitmate'			         " Insert mode auto-completion for quotes, parens, brackets, etc.
 Plugin 'tpope/vim-surround'                              " Faster Quoting/parenthesizing
 Plugin 'andrewradev/splitjoin.vim'			 " Simplify switching between single and multi-line statements
+Plugin 'tpope/vim-commentary'
 
 Plugin 'junegunn/goyo.vim'				 " Distraction-free writing in Vim
 Plugin 'junegunn/limelight.vim'				 " Hyperfocus-writing in Vim
@@ -69,20 +75,19 @@ filetype plugin indent on
 " => Vim UI
 """"""""""""""""""""""""""""""
 syntax on 
-"set t_Co=256
-set background=light
+set background=dark
 set termguicolors
-
-" colorscheme configurations
-let g:seoul256_background = 239 " range: 233 (darkest) ~ 239 (lightest)
-let g:nord_comment_brightness = 20 " varies between 1-20 percent
-"let g:quantum_black=1
-let g:lightline = {
-      \ 'colorscheme': 'solarized',
-      \ }
+"set t_Co=256
 
 " current colorscheme
-colorscheme solarized8_flat
+colorscheme onehalfdark
+
+" colorscheme configurations
+let g:nord_comment_brightness = 20 " varies between 1-20 percent
+let g:seoul256_background = 239 " range: 233 (darkest) ~ 239 (lightest)
+let g:lightline = {
+  \ 'colorscheme': 'onehalfdark'
+  \ }
 
 """"""""""""""""""""""""""""""
 " => Main Configuration (a-z)
@@ -216,8 +221,8 @@ let g:user_emmet_settings = webapi#json#decode(join(readfile(expand('~/.emmet-cu
 
 " => Fugitive
 nnoremap <Leader>gs :Gstatus<CR>
-nnoremap <Leader>gd :Gdiff<CR>
 nnoremap <Leader>gc :Gcommit<CR>
+nnoremap <Leader>gd :Gdiff<CR>
 nnoremap <Leader>gl :Glog<CR>
 nnoremap <Leader>gb :Git branch<CR>
 
