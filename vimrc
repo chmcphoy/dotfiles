@@ -84,11 +84,17 @@ colorscheme onehalfdark
 
 " colorscheme configurations
 let g:nord_comment_brightness = 20 " varies between 1-20 percent
+let g:nord_cursor_line_number_background = 1
 let g:seoul256_background = 239 " range: 233 (darkest) ~ 239 (lightest)
 let g:lightline = {
-  \ 'colorscheme': 'onehalfdark'
-  \ }
-
+      \ 'colorscheme': 'onehalfdark',
+      \ 'component_function': {
+      \   'filename': 'LightLineFilename'
+      \ }
+      \ }
+function! LightLineFilename()
+  return expand('%')
+endfunction
 """"""""""""""""""""""""""""""
 " => Main Configuration (a-z)
 """"""""""""""""""""""""""""""
