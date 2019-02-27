@@ -27,6 +27,7 @@ Plugin 'davidklsn/vim-sialoquent'			 " Colorscheme: Sialoquent
 Plugin 'lifepillar/vim-solarized8'			 " Colorscheme: Solarized8
 Plugin 'trevordmiller/nova-vim'                          " Colorscheme: Nova
 Plugin 'sonph/onehalf', {'rtp': 'vim/'}                  " Colorscheme: OneHalf
+Plugin 'haishanh/night-owl.vim'				 " Colorscheme: Nightowl
 
 
 " SYNTAX
@@ -80,14 +81,14 @@ set termguicolors
 "set t_Co=256
 
 " current colorscheme
-colorscheme onehalfdark
+colorscheme night-owl
 
 " colorscheme configurations
 let g:nord_comment_brightness = 20 " varies between 1-20 percent
 let g:nord_cursor_line_number_background = 1
-let g:seoul256_background = 239 " range: 233 (darkest) ~ 239 (lightest)
+let g:seoul256_background = 236 " range: 233 (darkest) ~ 239 (lightest)
 let g:lightline = {
-      \ 'colorscheme': 'onehalfdark',
+      \ 'colorscheme': 'nord',
       \ 'component_function': {
       \   'filename': 'LightLineFilename'
       \ }
