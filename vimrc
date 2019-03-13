@@ -46,6 +46,7 @@ Plugin 'posva/vim-vue'					 " Vue syntax
 Plugin 'mileszs/ack.vim'                                 " Search in code and filenames
 Plugin 'ctrlpvim/ctrlp.vim'                              " Fuzzy file finder
 Plugin 'scrooloose/nerdtree'                             " Tree-like file navigation
+Plugin 'mhinz/vim-tree'					 " Tree in vim
 Plugin 'chrisbra/csv.vim'
 
 " EDITING
