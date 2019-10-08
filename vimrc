@@ -82,14 +82,14 @@ set termguicolors
 "set t_Co=256
 
 " current colorscheme
-colorscheme night-owl
+colorscheme onehalfdark
 
 " colorscheme configurations
 let g:nord_comment_brightness = 20 " varies between 1-20 percent
 let g:nord_cursor_line_number_background = 1
 let g:seoul256_background = 236 " range: 233 (darkest) ~ 239 (lightest)
 let g:lightline = {
-      \ 'colorscheme': 'nord',
+      \ 'colorscheme': 'onehalfdark',
       \ 'component_function': {
       \   'filename': 'LightLineFilename'
       \ }
@@ -172,6 +172,9 @@ nnoremap <leader>c :nohl<CR>
 " tabular navigation
 nnoremap <leader>n :tabnext<cr>
 nnoremap <leader>t :tabnew<cr>
+
+" => Open Chrome browser
+nmap <silent> <C-C> :!open % -a Google\ Chrome<CR>
 
 """"""""""""""""""""""""""""""
 " => Plugin Configs (a-z)
