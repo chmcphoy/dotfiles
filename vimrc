@@ -21,6 +21,7 @@ Plugin 'VundleVim/Vundle.vim'                            " let Vundle manage Vun
 Plugin 'tyrannicaltoucan/vim-deep-space'		 " Colorscheme: Deep Space
 Plugin 'yuttie/hydrangea-vim'				 " Colorscheme: Hydrangea
 Plugin 'arcticicestudio/nord-vim'                        " Colorscheme: Nord
+Plugin 'drewtempelmeyer/palenight.vim'
 Plugin 'tyrannicaltoucan/vim-quantum'			 " Colorscheme: Quantum
 Plugin 'junegunn/seoul256.vim'				 " Colorscheme: Seoul256
 Plugin 'davidklsn/vim-sialoquent'			 " Colorscheme: Sialoquent
@@ -68,6 +69,7 @@ Plugin 'w0rp/ale'					 " Asynchronus linting for Vim!
 Plugin 'tpope/vim-fugitive'                              " a Git wrapper so awesome, it should be illegal
 Plugin 'itchyny/lightline.vim'                           " minimal statusbar
 "Plugin 'fatih/vim-go'                                   " Go development plugin
+Plugin 'ryanoasis/vim-devicons'                            " markdown-like syntax for plain-text notes
 
 call vundle#end() " make sure your plugins are before this line
 
@@ -82,14 +84,15 @@ set termguicolors
 "set t_Co=256
 
 " current colorscheme
-colorscheme onehalfdark
+colorscheme palenight
 
 " colorscheme configurations
 let g:nord_comment_brightness = 20 " varies between 1-20 percent
 let g:nord_cursor_line_number_background = 1
 let g:seoul256_background = 236 " range: 233 (darkest) ~ 239 (lightest)
+" let g:palenight_terminal_italics=1
 let g:lightline = {
-      \ 'colorscheme': 'onehalfdark',
+      \ 'colorscheme': 'palenight',
       \ 'component_function': {
       \   'filename': 'LightLineFilename'
       \ }
@@ -103,7 +106,8 @@ endfunction
 set backspace=indent,eol,start
 set nobackup
 set cursorline  
-set encoding=utf-8 
+" set encoding=utf-8 
+set encoding=UTF-8
 set expandtab
 set nofoldenable
 set history=200
