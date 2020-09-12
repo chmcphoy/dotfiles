@@ -29,7 +29,9 @@ Plugin 'lifepillar/vim-solarized8'			 " Colorscheme: Solarized8
 Plugin 'trevordmiller/nova-vim'                          " Colorscheme: Nova
 Plugin 'sonph/onehalf', {'rtp': 'vim/'}                  " Colorscheme: OneHalf
 Plugin 'haishanh/night-owl.vim'				 " Colorscheme: Nightowl
-
+Plugin 'chriskempson/base16-vim'
+Plugin 'mhartington/oceanic-next'
+Plugin 'NLKNguyen/papercolor-theme'
 
 " SYNTAX
 Plugin 'sheerun/vim-polyglot'                            " Language pack - needed for nova
@@ -68,8 +70,8 @@ Plugin 'shime/vim-livedown'                              " Live Markdown preview
 Plugin 'w0rp/ale'					 " Asynchronus linting for Vim!
 Plugin 'tpope/vim-fugitive'                              " a Git wrapper so awesome, it should be illegal
 Plugin 'itchyny/lightline.vim'                           " minimal statusbar
-"Plugin 'fatih/vim-go'                                   " Go development plugin
 Plugin 'ryanoasis/vim-devicons'                            " markdown-like syntax for plain-text notes
+Plugin 'Yggdroot/indentLine'
 
 call vundle#end() " make sure your plugins are before this line
 
@@ -79,20 +81,28 @@ filetype plugin indent on
 " => Vim UI
 """"""""""""""""""""""""""""""
 syntax on 
-set background=dark
-set termguicolors
-"set t_Co=256
+set background=light
+" set t_Co=256 (Vim 7)
+let &t_8f="\<Esc>[38;2;%lu;%lu;%lum"
+let &t_8b="\<Esc>[48;2;%lu;%lu;%lum"
+set termguicolors " (vim 8)
 
 " current colorscheme
-colorscheme palenight
+colorscheme PaperColor
 
 " colorscheme configurations
-let g:nord_comment_brightness = 20 " varies between 1-20 percent
-let g:nord_cursor_line_number_background = 1
 let g:seoul256_background = 236 " range: 233 (darkest) ~ 239 (lightest)
 " let g:palenight_terminal_italics=1
+let g:PaperColor_Theme_Options = {
+  \   'theme': {
+  \     'default': {
+  \       'transparent_background': 1
+  \     }
+  \   }
+  \ }
+
 let g:lightline = {
-      \ 'colorscheme': 'palenight',
+      \ 'colorscheme': 'PaperColor',
       \ 'component_function': {
       \   'filename': 'LightLineFilename'
       \ }
@@ -177,8 +187,17 @@ nnoremap <leader>c :nohl<CR>
 nnoremap <leader>n :tabnext<cr>
 nnoremap <leader>t :tabnew<cr>
 
-" => Open Chrome browser
-nmap <silent> <C-C> :!open % -a Google\ Chrome<CR>
+" => Rename visual selected text
+xnoremap <leader>r :<C-u>'{,'}s/<C-r>=GetVisualSelection()<CR>/
+xnoremap <leader>R :<C-u>%s/<C-r>=GetVisualSelection()<CR>/
+
+function! GetVisualSelection()
+    let old_reg = @v
+    normal! gv"vy
+    let raw_search = @v
+    let @v = old_reg
+    return substitute(escape(raw_search, '\/.*$^~[]'), "\n", '\\n', "g")
+endfunction
 
 """"""""""""""""""""""""""""""
 " => Plugin Configs (a-z)
@@ -231,7 +250,7 @@ let g:user_emmet_install_global = 1
 autocmd FileType html,css,vue,javascript EmmetInstall
 " trigger emmet with fewer keystrokes
 imap <C-e> <C-y>, 
-let g:user_emmet_settings = webapi#json#decode(join(readfile(expand('~/.emmet-custom-snippets.json')), "\n"))
+" let g:user_emmet_settings = webapi#json#decode(join(readfile(expand('~/.emmet-custom-snippets.json')), "\n"))
 
 
 " => Fugitive
