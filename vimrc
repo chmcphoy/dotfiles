@@ -18,20 +18,21 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'                            " let Vundle manage Vundle, required
 
 " COLORS
-Plugin 'tyrannicaltoucan/vim-deep-space'		 " Colorscheme: Deep Space
-Plugin 'yuttie/hydrangea-vim'				 " Colorscheme: Hydrangea
-Plugin 'arcticicestudio/nord-vim'                        " Colorscheme: Nord
+Plugin 'tyrannicaltoucan/vim-deep-space'
+Plugin 'yuttie/hydrangea-vim'
+Plugin 'arcticicestudio/nord-vim'
 Plugin 'drewtempelmeyer/palenight.vim'
-Plugin 'tyrannicaltoucan/vim-quantum'			 " Colorscheme: Quantum
-Plugin 'junegunn/seoul256.vim'				 " Colorscheme: Seoul256
-Plugin 'davidklsn/vim-sialoquent'			 " Colorscheme: Sialoquent
-Plugin 'lifepillar/vim-solarized8'			 " Colorscheme: Solarized8
-Plugin 'trevordmiller/nova-vim'                          " Colorscheme: Nova
-Plugin 'sonph/onehalf', {'rtp': 'vim/'}                  " Colorscheme: OneHalf
-Plugin 'haishanh/night-owl.vim'				 " Colorscheme: Nightowl
+Plugin 'tyrannicaltoucan/vim-quantum'
+Plugin 'junegunn/seoul256.vim'	
+Plugin 'davidklsn/vim-sialoquent'
+Plugin 'lifepillar/vim-solarized8'
+Plugin 'trevordmiller/nova-vim'
+Plugin 'sonph/onehalf', {'rtp': 'vim/'}
+Plugin 'haishanh/night-owl.vim'
 Plugin 'chriskempson/base16-vim'
 Plugin 'mhartington/oceanic-next'
 Plugin 'NLKNguyen/papercolor-theme'
+Plugin 'nightsense/cosmic_latte'
 
 " SYNTAX
 Plugin 'sheerun/vim-polyglot'                            " Language pack - needed for nova
@@ -59,6 +60,7 @@ Plugin 'raimondi/delimitmate'			         " Insert mode auto-completion for quote
 Plugin 'tpope/vim-surround'                              " Faster Quoting/parenthesizing
 Plugin 'andrewradev/splitjoin.vim'			 " Simplify switching between single and multi-line statements
 Plugin 'tpope/vim-commentary'
+Plugin 'justinmk/vim-sneak'
 
 Plugin 'junegunn/goyo.vim'				 " Distraction-free writing in Vim
 Plugin 'junegunn/limelight.vim'				 " Hyperfocus-writing in Vim
@@ -81,28 +83,38 @@ filetype plugin indent on
 " => Vim UI
 """"""""""""""""""""""""""""""
 syntax on 
-set background=light
+set background=dark
 " set t_Co=256 (Vim 7)
 let &t_8f="\<Esc>[38;2;%lu;%lu;%lum"
 let &t_8b="\<Esc>[48;2;%lu;%lu;%lum"
 set termguicolors " (vim 8)
 
-" current colorscheme
-colorscheme PaperColor
+" seoul256 (dark):
+"   Range:   233 (darkest) ~ 239 (lightest)
+"   Default: 237
 
-" colorscheme configurations
-let g:seoul256_background = 236 " range: 233 (darkest) ~ 239 (lightest)
+" seoul256 (light):
+"   Range:   252 (darkest) ~ 256 (lightest)
+"   Default: 253
+
+let g:seoul256_background = 255
+
+" current colorscheme
+colorscheme cosmic_latte
+
+" Colorscheme Configurations
 " let g:palenight_terminal_italics=1
 let g:PaperColor_Theme_Options = {
   \   'theme': {
   \     'default': {
-  \       'transparent_background': 1
+  \       'transparent_background': 0,
+  \       'allow_bold': 0,
   \     }
   \   }
   \ }
 
 let g:lightline = {
-      \ 'colorscheme': 'PaperColor',
+      \ 'colorscheme': 'cosmic_latte_dark',
       \ 'component_function': {
       \   'filename': 'LightLineFilename'
       \ }
@@ -258,7 +270,7 @@ nnoremap <Leader>gs :Gstatus<CR>
 nnoremap <Leader>gc :Gcommit<CR>
 nnoremap <Leader>gd :Gdiff<CR>
 nnoremap <Leader>gl :Glog<CR>
-nnoremap <Leader>gb :Git branch<CR>
+nnoremap <Leader>gb :Gblame<CR>
 
 " => Limelight
 nmap <Leader>l <Plug>(Limelight)
