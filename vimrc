@@ -18,21 +18,15 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'                            " let Vundle manage Vundle, required
 
 " COLORS
-Plugin 'tyrannicaltoucan/vim-deep-space'
-Plugin 'yuttie/hydrangea-vim'
-Plugin 'arcticicestudio/nord-vim'
-Plugin 'drewtempelmeyer/palenight.vim'
-Plugin 'tyrannicaltoucan/vim-quantum'
-Plugin 'junegunn/seoul256.vim'	
-Plugin 'davidklsn/vim-sialoquent'
-Plugin 'lifepillar/vim-solarized8'
-Plugin 'trevordmiller/nova-vim'
-Plugin 'sonph/onehalf', {'rtp': 'vim/'}
-Plugin 'haishanh/night-owl.vim'
-Plugin 'chriskempson/base16-vim'
-Plugin 'mhartington/oceanic-next'
-Plugin 'NLKNguyen/papercolor-theme'
 Plugin 'nightsense/cosmic_latte'
+Plugin 'nightsense/seabird'
+Plugin 'mhartington/oceanic-next'
+Plugin 'arcticicestudio/nord-vim'
+Plugin 'tyrannicaltoucan/vim-deep-space'
+Plugin 'junegunn/seoul256.vim'	
+Plugin 'NLKNguyen/papercolor-theme'
+Plugin 'sonph/onehalf', {'rtp': 'vim/'}
+Plugin 'morhetz/gruvbox'
 
 " SYNTAX
 Plugin 'sheerun/vim-polyglot'                            " Language pack - needed for nova
@@ -48,7 +42,8 @@ Plugin 'posva/vim-vue'					 " Vue syntax
 
 " FILE NAVIGATION
 Plugin 'mileszs/ack.vim'                                 " Search in code and filenames
-Plugin 'ctrlpvim/ctrlp.vim'                              " Fuzzy file finder
+Plugin 'junegunn/fzf.vim'                                " Fuzzy file finder
+
 Plugin 'scrooloose/nerdtree'                             " Tree-like file navigation
 Plugin 'mhinz/vim-tree'					 " Tree in vim
 Plugin 'chrisbra/csv.vim'
@@ -60,19 +55,16 @@ Plugin 'raimondi/delimitmate'			         " Insert mode auto-completion for quote
 Plugin 'tpope/vim-surround'                              " Faster Quoting/parenthesizing
 Plugin 'andrewradev/splitjoin.vim'			 " Simplify switching between single and multi-line statements
 Plugin 'tpope/vim-commentary'
-Plugin 'justinmk/vim-sneak'
 
 Plugin 'junegunn/goyo.vim'				 " Distraction-free writing in Vim
 Plugin 'junegunn/limelight.vim'				 " Hyperfocus-writing in Vim
-Plugin 'junegunn/vim-journal'                            " markdown-like syntax for plain-text notes
-
 
 " MISC UTILITIES
 Plugin 'shime/vim-livedown'                              " Live Markdown previews - without leaving Vim.
 Plugin 'w0rp/ale'					 " Asynchronus linting for Vim!
 Plugin 'tpope/vim-fugitive'                              " a Git wrapper so awesome, it should be illegal
 Plugin 'itchyny/lightline.vim'                           " minimal statusbar
-Plugin 'ryanoasis/vim-devicons'                            " markdown-like syntax for plain-text notes
+Plugin 'ryanoasis/vim-devicons'                          " markdown-like syntax for plain-text notes
 Plugin 'Yggdroot/indentLine'
 
 call vundle#end() " make sure your plugins are before this line
@@ -88,6 +80,7 @@ set background=dark
 let &t_8f="\<Esc>[38;2;%lu;%lu;%lum"
 let &t_8b="\<Esc>[48;2;%lu;%lu;%lum"
 set termguicolors " (vim 8)
+set rtp+=/usr/local/opt/fzf
 
 " seoul256 (dark):
 "   Range:   233 (darkest) ~ 239 (lightest)
@@ -97,18 +90,19 @@ set termguicolors " (vim 8)
 "   Range:   252 (darkest) ~ 256 (lightest)
 "   Default: 253
 
-let g:seoul256_background = 255
+" Colorscheme Configurations
+let g:gruvbox_italic=1
+let g:gruvbox_contrast_dark="hard" " Options: soft, medium, hard
+let g:seoul256_background = 236
 
 " current colorscheme
 colorscheme cosmic_latte
 
 " Colorscheme Configurations
-" let g:palenight_terminal_italics=1
 let g:PaperColor_Theme_Options = {
   \   'theme': {
   \     'default': {
-  \       'transparent_background': 0,
-  \       'allow_bold': 0,
+  \       'transparent_background': 1
   \     }
   \   }
   \ }
@@ -116,12 +110,19 @@ let g:PaperColor_Theme_Options = {
 let g:lightline = {
       \ 'colorscheme': 'cosmic_latte_dark',
       \ 'component_function': {
-      \   'filename': 'LightLineFilename'
+      \   'filename': 'LightlineFilename',
       \ }
       \ }
-function! LightLineFilename()
+
+function! LightlineFilename()
+  let root = fnamemodify(get(b:, 'git_dir'), ':h')
+  let path = expand('%:p')
+  if path[:len(root)-1] ==# root
+    return path[len(root)+1:]
+  endif
   return expand('%')
 endfunction
+
 """"""""""""""""""""""""""""""
 " => Main Configuration (a-z)
 """"""""""""""""""""""""""""""
@@ -222,8 +223,8 @@ nmap <leader>A :tab split<CR>:Ack "\W<C-r><C-w>\W"<CR>
 let g:ale_linters = {
       \  'javascript': ['eslint'],
       \  'vue': ['eslint'],
-      \  'scss': ['stylelint'],
-      \  'markdown': ['markdownlint']
+      \  'markdown': ['markdownlint'],
+      \  'scss': ['stylelint']
       \}
 
 let g:ale_fixers = {}
@@ -251,11 +252,8 @@ let g:ale_statusline_format = ['👎 %d', '❓ %d', '']
 " %linter% is the name of the linter that provided the message
 " %s is the error or warning message
 
-" => CtrlP
-let g:ctrlp_custom_ignore = '\v[\/](node_modules|coverage|target|dist|build|bin|vendor)|(\.(swp|ico|git|svn|png|jpg|gif|ttf))$'
-let g:ctrlp_working_path_mode = 0
-let g:ctrlp_regexp_search = 1
-let g:ctrlp_by_filename = 0
+" => FZF 🌺
+nnoremap <c-p> :GFiles<cr>
 
 " => Emmet
 let g:user_emmet_install_global = 1
