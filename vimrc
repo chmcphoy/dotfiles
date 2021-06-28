@@ -27,6 +27,8 @@ Plugin 'junegunn/seoul256.vim'
 Plugin 'NLKNguyen/papercolor-theme'
 Plugin 'sonph/onehalf', {'rtp': 'vim/'}
 Plugin 'morhetz/gruvbox'
+Plugin 'b4skyx/serenade'
+Plugin 'sainnhe/everforest'
 
 " SYNTAX
 Plugin 'sheerun/vim-polyglot'                            " Language pack - needed for nova
@@ -41,7 +43,6 @@ Plugin 'digitaltoad/vim-pug'				 " Pug syntax
 Plugin 'posva/vim-vue'					 " Vue syntax
 
 " FILE NAVIGATION
-Plugin 'mileszs/ack.vim'                                 " Search in code and filenames
 Plugin 'junegunn/fzf.vim'                                " Fuzzy file finder
 
 Plugin 'scrooloose/nerdtree'                             " Tree-like file navigation
@@ -92,11 +93,12 @@ set rtp+=/usr/local/opt/fzf
 
 " Colorscheme Configurations
 let g:gruvbox_italic=1
-let g:gruvbox_contrast_dark="hard" " Options: soft, medium, hard
-let g:seoul256_background = 236
+let g:gruvbox_contrast_dark="soft" " Options: soft, medium, hard
+let g:everforest_background = 'soft'
+let g:seoul256_background = 252
 
 " current colorscheme
-colorscheme cosmic_latte
+colorscheme everforest
 
 " Colorscheme Configurations
 let g:PaperColor_Theme_Options = {
@@ -108,7 +110,7 @@ let g:PaperColor_Theme_Options = {
   \ }
 
 let g:lightline = {
-      \ 'colorscheme': 'cosmic_latte_dark',
+      \ 'colorscheme': 'everforest',
       \ 'component_function': {
       \   'filename': 'LightlineFilename',
       \ }
@@ -179,7 +181,7 @@ xnoremap h <esc>
 cnoremap jk <esc>
 
 " fast & intuitive finds
-nmap <leader>f /
+" nmap <leader>f /
 
 " move lines with C-(hjkl)
 nnoremap <silent> <C-k> :move-2<cr>
@@ -215,9 +217,6 @@ endfunction
 """"""""""""""""""""""""""""""
 " => Plugin Configs (a-z)
 """"""""""""""""""""""""""""""
-" => Ack
-nmap <leader>a <CR>:Ack ""<left>
-nmap <leader>A :tab split<CR>:Ack "\W<C-r><C-w>\W"<CR>
 
 " => Asynchronous Lint Engine (ALE)
 let g:ale_linters = {
@@ -253,7 +252,13 @@ let g:ale_statusline_format = ['👎 %d', '❓ %d', '']
 " %s is the error or warning message
 
 " => FZF 🌺
-nnoremap <c-p> :GFiles<cr>
+nnoremap <silent> <c-p> :GFiles<cr>
+nnoremap <silent> <C-f> :Files<CR>
+nnoremap <silent> <Leader>f :Rg<CR>
+command! -bang -nargs=* Rg call fzf#vim#grep("rg --column --line-number --no-heading --color=always --smart-case ".shellescape(<q-args>), 1, {'options': '--delimiter : --nth 4..'}, <bang>0)
+
+let g:webdevicons_enable = 1
+let g:webdevicons_enable_nerdtree = 1
 
 " => Emmet
 let g:user_emmet_install_global = 1
