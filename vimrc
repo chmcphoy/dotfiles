@@ -9,66 +9,63 @@ set nocompatible                         " be iMproved
 let mapleader = "\<Space>"               " <leader> for all mappings                                       
 
 """"""""""""""""""""""""""""""
-" => Vundle Plugin Setup 
+" => Plugin Installation
 """"""""""""""""""""""""""""""
-filetype off " Required
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-
-Plugin 'VundleVim/Vundle.vim'                            " let Vundle manage Vundle, required
+call plug#begin('~/.vim/plugged')
 
 " COLORS
-Plugin 'nightsense/cosmic_latte'
-Plugin 'nightsense/seabird'
-Plugin 'mhartington/oceanic-next'
-Plugin 'arcticicestudio/nord-vim'
-Plugin 'tyrannicaltoucan/vim-deep-space'
-Plugin 'junegunn/seoul256.vim'	
-Plugin 'NLKNguyen/papercolor-theme'
-Plugin 'sonph/onehalf', {'rtp': 'vim/'}
-Plugin 'morhetz/gruvbox'
-Plugin 'b4skyx/serenade'
-Plugin 'sainnhe/everforest'
+Plug 'nightsense/cosmic_latte'
+Plug 'nightsense/seabird'
+Plug 'mhartington/oceanic-next'
+Plug 'arcticicestudio/nord-vim'
+Plug 'tyrannicaltoucan/vim-deep-space'
+Plug 'junegunn/seoul256.vim'	
+Plug 'NLKNguyen/papercolor-theme'
+Plug 'sonph/onehalf', {'rtp': 'vim/'}
+Plug 'morhetz/gruvbox'
+Plug 'b4skyx/serenade'
+Plug 'sainnhe/everforest'
 
 " SYNTAX
-Plugin 'sheerun/vim-polyglot'                            " Language pack - needed for nova
-Plugin 'othree/html5.vim'                                " HTML syntax
-Plugin 'hail2u/vim-css3-syntax'                          " CSS syntax
-Plugin 'cakebaker/scss-syntax.vim'                       " SASS syntax
-Plugin 'kchmck/vim-coffee-script'                        " CoffeeScript syntax
-Plugin 'pangloss/vim-javascript'                         " JS syntax
-Plugin 'othree/javascript-libraries-syntax.vim'          " JS libs & frameworks
-Plugin 'elzr/vim-json'                                   " JSON syntax
-Plugin 'digitaltoad/vim-pug'				 " Pug syntax
-Plugin 'posva/vim-vue'					 " Vue syntax
+Plug 'sheerun/vim-polyglot'                            " Language pack - needed for nova
+Plug 'othree/html5.vim'                                " HTML syntax
+Plug 'hail2u/vim-css3-syntax'                          " CSS syntax
+Plug 'cakebaker/scss-syntax.vim'                       " SASS syntax
+Plug 'kchmck/vim-coffee-script'                        " CoffeeScript syntax
+Plug 'pangloss/vim-javascript'                         " JS syntax
+Plug 'othree/javascript-libraries-syntax.vim'          " JS libs & frameworks
+Plug 'elzr/vim-json'                                   " JSON syntax
+Plug 'digitaltoad/vim-pug'				 " Pug syntax
+Plug 'posva/vim-vue'					 " Vue syntax
 
 " FILE NAVIGATION
-Plugin 'junegunn/fzf.vim'                                " Fuzzy file finder
+Plug 'junegunn/fzf.vim'                                " Fuzzy file finder
 
-Plugin 'scrooloose/nerdtree'                             " Tree-like file navigation
-Plugin 'mhinz/vim-tree'					 " Tree in vim
-Plugin 'chrisbra/csv.vim'
+Plug 'scrooloose/nerdtree'                             " Tree-like file navigation
+Plug 'mhinz/vim-tree'					 " Tree in vim
+Plug 'chrisbra/csv.vim'
 
 " EDITING
-Plugin 'mattn/emmet-vim'                                 " Faster HTML & CSS workflow
-Plugin 'mattn/webapi-vim'				 " Vim interface to Web API's
-Plugin 'raimondi/delimitmate'			         " Insert mode auto-completion for quotes, parens, brackets, etc.
-Plugin 'tpope/vim-surround'                              " Faster Quoting/parenthesizing
-Plugin 'andrewradev/splitjoin.vim'			 " Simplify switching between single and multi-line statements
-Plugin 'tpope/vim-commentary'
+Plug 'mattn/emmet-vim'                                " Faster HTML & CSS workflow
+Plug 'mattn/webapi-vim'				      " Vim interface to Web API's
+Plug 'raimondi/delimitmate'			      " Insert mode auto-completion for quotes, parens, brackets, etc.
+Plug 'tpope/vim-surround'                             " Faster Quoting/parenthesizing
+Plug 'andrewradev/splitjoin.vim'		      " Simplify switching between single and multi-line statements
+Plug 'tpope/vim-commentary'
 
-Plugin 'junegunn/goyo.vim'				 " Distraction-free writing in Vim
-Plugin 'junegunn/limelight.vim'				 " Hyperfocus-writing in Vim
+Plug 'junegunn/goyo.vim'			      " Distraction-free writing in Vim
+Plug 'junegunn/limelight.vim'			      " Hyperfocus-writing in Vim
 
 " MISC UTILITIES
-Plugin 'shime/vim-livedown'                              " Live Markdown previews - without leaving Vim.
-Plugin 'w0rp/ale'					 " Asynchronus linting for Vim!
-Plugin 'tpope/vim-fugitive'                              " a Git wrapper so awesome, it should be illegal
-Plugin 'itchyny/lightline.vim'                           " minimal statusbar
-Plugin 'ryanoasis/vim-devicons'                          " markdown-like syntax for plain-text notes
-Plugin 'Yggdroot/indentLine'
+Plug 'shime/vim-livedown'                              " Live Markdown previews - without leaving Vim.
+Plug 'w0rp/ale'					       " Asynchronus linting for Vim!
+Plug 'tpope/vim-fugitive'                              " a Git wrapper so awesome, it should be illegal
+Plug 'itchyny/lightline.vim'                           " minimal statusbar
+Plug 'ryanoasis/vim-devicons'                          " markdown-like syntax for plain-text notes
+Plug 'Yggdroot/indentLine'
 
-call vundle#end() " make sure your plugins are before this line
+" Initialize plugin system
+call plug#end()
 
 filetype plugin indent on
 
@@ -255,6 +252,7 @@ let g:ale_statusline_format = ['👎 %d', '❓ %d', '']
 nnoremap <silent> <c-p> :GFiles<cr>
 nnoremap <silent> <C-f> :Files<CR>
 nnoremap <silent> <Leader>f :Rg<CR>
+nnoremap <silent> <Leader>gl :Commits<CR>
 command! -bang -nargs=* Rg call fzf#vim#grep("rg --column --line-number --no-heading --color=always --smart-case ".shellescape(<q-args>), 1, {'options': '--delimiter : --nth 4..'}, <bang>0)
 
 let g:webdevicons_enable = 1
@@ -272,7 +270,6 @@ imap <C-e> <C-y>,
 nnoremap <Leader>gs :Gstatus<CR>
 nnoremap <Leader>gc :Gcommit<CR>
 nnoremap <Leader>gd :Gdiff<CR>
-nnoremap <Leader>gl :Glog<CR>
 nnoremap <Leader>gb :Gblame<CR>
 
 " => Limelight
