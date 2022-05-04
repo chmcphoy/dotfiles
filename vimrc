@@ -42,7 +42,6 @@ Plug 'posva/vim-vue'					 " Vue syntax
 Plug 'junegunn/fzf.vim'                                " Fuzzy file finder
 
 Plug 'scrooloose/nerdtree'                             " Tree-like file navigation
-Plug 'mhinz/vim-tree'					 " Tree in vim
 Plug 'chrisbra/csv.vim'
 
 " EDITING
@@ -95,7 +94,7 @@ let g:everforest_background = 'soft'
 let g:seoul256_background = 252
 
 " current colorscheme
-colorscheme everforest
+colorscheme serenade
 
 " Colorscheme Configurations
 let g:PaperColor_Theme_Options = {
@@ -179,6 +178,20 @@ cnoremap jk <esc>
 
 " fast & intuitive finds
 " nmap <leader>f /
+
+" TAB in general mode will move to text buffer
+nnoremap <TAB> :bnext<CR>
+" SHIFT-TAB will go back
+nnoremap <S-TAB> :bprevious<CR>
+
+" <TAB>: omni-completion in insert mode
+" inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
+
+" Use alt + hjkl to resize windows
+nnoremap <M-j>    :resize -2<CR>
+nnoremap <M-k>    :resize +2<CR>
+nnoremap <M-h>    :vertical resize -2<CR>
+nnoremap <M-l>    :vertical resize +2<CR>
 
 " move lines with C-(hjkl)
 nnoremap <silent> <C-k> :move-2<cr>
