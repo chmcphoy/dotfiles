@@ -17,7 +17,7 @@ local config = {
   },
 
   -- Set colorscheme to use
-  colorscheme = "default_theme",
+  colorscheme = "seoulbones",
 
   -- Add highlight groups in any theme
   highlights = {
@@ -194,6 +194,8 @@ local config = {
       { "catppuccin/nvim", as = "catppuccin" },
       { "folke/tokyonight.nvim" },
       { "rebelot/kanagawa.nvim" },
+      { "mhartington/oceanic-next" },
+      { "mcchrish/zenbones.nvim", requires = "rktjmp/lush.nvim" },
 
     },
     -- All other entries override the require("<key>").setup({...}) call for default plugins
