@@ -15,14 +15,11 @@ local config = {
     auto_reload = false, -- automatically reload and sync packer after a successful update
     auto_quit = false, -- automatically quit the current session after a successful update
   },
-
   -- Set colorscheme to use
-  colorscheme = "seoulbones",
-
+  colorscheme = "zenburned",
   -- Add highlight groups in any theme
   highlights = {
   },
-
   -- set vim options here (vim.<first_key>.<second_key> = value)
   options = {
     opt = {
@@ -45,7 +42,6 @@ local config = {
       heirline_bufferline = false, -- enable new heirline based bufferline (requires :PackerSync after changing)
     },
   },
-
   -- Set dashboard header
   header = {
     " █████  ███████ ████████ ██████   ██████",
@@ -60,7 +56,6 @@ local config = {
     "    ██  ██ ██  ██  ██  ██ ██  ██  ██",
     "    ██   ████   ████   ██ ██      ██",
   },
-
   -- Default theme configuration
   default_theme = {
     -- Modify the color palette for the default theme
@@ -104,13 +99,11 @@ local config = {
       ["which-key"] = true,
     },
   },
-
   -- Diagnostics configuration (for vim.diagnostics.config({...})) when diagnostics are on
   diagnostics = {
     virtual_text = true,
     underline = true,
   },
-
   -- Extend LSP configuration
   lsp = {
     -- enable servers that you already have installed without mason
@@ -159,7 +152,6 @@ local config = {
       -- },
     },
   },
-
   -- Mapping data with "desc" stored directly by vim.keymap.set().
   --
   -- Use this mappings table to set keyboard mapping since this is the
@@ -182,7 +174,6 @@ local config = {
       -- ["<esc>"] = false,
     },
   },
-
   -- Configure plugins
   plugins = {
     init = {
@@ -190,12 +181,29 @@ local config = {
       -- ["goolord/alpha-nvim"] = { disable = true },
 
       -- NEW PLUGINS (packer syntax without the "use"):
-      -- *Color Schemes
-      { "catppuccin/nvim", as = "catppuccin" },
+      -- [Color Schemes]
+      { "catppuccin/nvim",         as = "catppuccin" },
       { "folke/tokyonight.nvim" },
       { "rebelot/kanagawa.nvim" },
       { "mhartington/oceanic-next" },
-      { "mcchrish/zenbones.nvim", requires = "rktjmp/lush.nvim" },
+      { "mcchrish/zenbones.nvim",  requires = "rktjmp/lush.nvim" }, -- forestbones, seoulbones, kanagawabones, zenburned
+      --  [EDITING]
+      {
+        "iamcco/markdown-preview.nvim",
+        run = function() vim.fn["mkdp#util#install"]() end,
+      },
+      {
+        "folke/twilight.nvim",
+        config = function()
+          require("twilight").setup {}
+        end
+      },
+      {
+        "folke/zen-mode.nvim",
+        config = function()
+          require("zen-mode").setup {}
+        end
+      }
 
     },
     -- All other entries override the require("<key>").setup({...}) call for default plugins
@@ -228,7 +236,6 @@ local config = {
       -- ensure_installed = { "python" },
     },
   },
-
   -- LuaSnip Options
   luasnip = {
     -- Extend filetypes
@@ -241,7 +248,6 @@ local config = {
       paths = {},
     },
   },
-
   -- CMP Source Priorities
   -- modify here the priorities of default cmp sources
   -- higher value == higher priority
@@ -256,7 +262,6 @@ local config = {
       path = 250,
     },
   },
-
   -- Customize Heirline options
   heirline = {
     -- -- Customize different separators between sections
@@ -282,7 +287,6 @@ local config = {
     --   },
     -- },
   },
-
   -- Modify which-key registration (Use this with mappings table in the above.)
   ["which-key"] = {
     -- Add bindings which show up as group name
@@ -298,7 +302,6 @@ local config = {
       },
     },
   },
-
   -- This function is run last and is a good place to configuring
   -- augroups/autocommands and custom filetypes also this just pure lua so
   -- anything that doesn't fit in the normal config locations above can go here
