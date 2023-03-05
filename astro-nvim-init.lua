@@ -16,7 +16,7 @@ local config = {
     auto_quit = false, -- automatically quit the current session after a successful update
   },
   -- Set colorscheme to use
-  colorscheme = "zenburned",
+  colorscheme = "forestbones",
   -- Add highlight groups in any theme
   highlights = {
   },
@@ -182,7 +182,7 @@ local config = {
 
       -- NEW PLUGINS (packer syntax without the "use"):
       -- [Color Schemes]
-      { "catppuccin/nvim",         as = "catppuccin" },
+      { "catppuccin/nvim", as = "catppuccin" }, -- catppuccin-latte, catppuccin-frappe, catppuccin-macchiato, catppuccin-mocha
       { "folke/tokyonight.nvim" },
       { "rebelot/kanagawa.nvim" },
       { "mhartington/oceanic-next" },
